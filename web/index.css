@@ -1,0 +1,58 @@
+:root {
+  --bg: #d3ca79;
+  --bg2: #ea7300;
+  --fg: #e83f25;
+  --fg2: #a62c2c;
+  --white: #f2f2f2;
+  --black: #1e1e1e;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: var(--bg);
+  text-align: center;
+  color: var(--black);
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-areas:
+    "title bar-chart map"
+    "info-text bar-chart map"
+    "info-text big-numbers map";
+  background-color: var(--bg);
+  grid-gap: 10px;
+  width: 100vw;
+  height: 100vh;
+}
+
+.container-item {
+  background-color: var(--white);
+}
+
+.title {
+  grid-area: title;
+}
+
+.info-text {
+  grid-area: info-text;
+}
+
+.bar-chart {
+  grid-area: bar-chart;
+}
+
+.big-numbers {
+  grid-area: big-numbers;
+}
+
+.map {
+  grid-area: map;
+}

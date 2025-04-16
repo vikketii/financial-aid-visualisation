@@ -1,0 +1,7 @@
+.timeline {
+    color: #ff0000;
+}
+
+.timeline:checked {
+    color: #00ff00;
+}

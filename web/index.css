@@ -14,7 +14,7 @@
 }
 
 body {
-  background-color: var(--bg);
+  background-color: #FFFFFF;
   text-align: center;
   color: var(--black);
 }
@@ -27,7 +27,7 @@ body {
     "title bar-chart map"
     "info-text bar-chart map"
     "info-text big-numbers map";
-  background-color: var(--bg);
+  background-color: var(--fg2);
   grid-gap: 10px;
   width: 100vw;
   height: 100vh;
@@ -47,6 +47,7 @@ body {
 
 .bar-chart {
   grid-area: bar-chart;
+  align-self: center;
 }
 
 .big-numbers {

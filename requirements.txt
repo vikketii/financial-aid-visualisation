@@ -4,3 +4,4 @@ numpy
 pyproj
 dash
 gunicorn
+dash-bootstrap-components

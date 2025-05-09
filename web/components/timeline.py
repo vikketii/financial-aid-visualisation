@@ -15,21 +15,36 @@ timeline_data = [
     # },
     {
         "year": 2018,
-        "description": """Opintorahan huoltajakorotus.
-        Vuositulorajojen ja takaisinperinnän euromäärien indeksikorotukset 2 vuoden välein.""",
+        "description": """Provider supplement introduced.
+        Indexation of annual income limits and euro amounts of recovery of benefits every 2 years.""",
     },
-    {"year": 2019, "description": """Opintorahan oppimateriaalilisä"""},
-    {"year": 2020, "description": """"""},
+    {
+        "year": 2019,
+        "description": """Student's parents' income is taken into account as taxable income and the income thresholds are increased""",
+    },
+    {
+        "year": 2020,
+        "description": """Provider supplement increased.
+        Study grants are increased annually on the basis of the National Pension Index (2020-2022).""",
+    },
     {
         "year": 2021,
-        "description": """Koronaepidemian aiheuttamia lievennyksiä opintojen edistymiseen liittyviin ehotihin.
-        Korkeakouluopiskelijan ateriatuki suureni 1,94 eurosta 2,30 euroon.""",
+        "description": """The impact of the Covid-19 epidemic on study conditions is taken into account in the terms of the student loan compensation, student loan tax deduction.
+        Meal subsidy increase.""",
     },
-    {"year": 2022, "description": """-"""},
-    {"year": 2023, "description": """-"""},
+    {
+        "year": 2022,
+        "description": """Student's own income limits affecting study grant will be temporarily increased by 25 % in 2022.""",
+    },
+    {
+        "year": 2023,
+        "description": """The income thresholds for student financial aid raised by 50 per cent from the level of 2021.
+     Meal subsidy increase.""",
+    },
     {
         "year": 2024,
-        "description": """Opintorahan indeksikorotusten jäädytys 2024-2027.""",
+        "description": """No index changes to the level of the study grant in the years 2024-2027.
+        Amount of the provider supplement and the amount of the state guarantee of the student loan are increased.""",
     },
 ]
 

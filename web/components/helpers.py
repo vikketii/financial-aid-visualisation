@@ -1,6 +1,70 @@
-def change_index_baseline(df, year):
+import pandas as pd
+import plotly.colors as palette
+
+
+def get_index_starting(year):
+    df = pd.read_csv("../data/kuluttajahintaindeksi-vuodet.csv")
+
     ratio = 100 / float(
-        df.loc[df["Vuosi"] == year]["Pisteluku"].iloc[0].replace(",", ".")
+        df.loc[df["vuosi"] == year]["pisteluku"].iloc[0].replace(",", ".")
     )
 
-    return df["Pisteluku"].transform(lambda x: float(x.replace(",", ".")) * ratio)
+    result = df["pisteluku"].transform(
+        lambda x: float(x.replace(",", ".")) * ratio / 100
+    )[year - 2005 :]
+
+    return result
+
+
+def hex_to_rgb(hex):
+    h = hex.lstrip("#")
+    l = [int(h[i : i + 2], 16) for i in (0, 2, 4)]
+    return f"{l[0]},{l[1]},{l[2]},"
+
+
+def get_colors(year):
+    colors = []
+
+    for i in range(10):
+        color = []
+
+        for j in range(10):
+            if j == year - 2018:
+                color.append(f"rgba({hex_to_rgb(palette.qualitative.Plotly[i])}1)")
+            else:
+                color.append(f"rgba({hex_to_rgb(palette.qualitative.Plotly[i])}0.6)")
+
+        colors.append(color)
+
+    # colors = [
+    #     [
+    #         "rgba(20,120,20,0.6)",
+    #     ]
+    #     * 10,
+    #     [
+    #         "rgba(20,20,120,0.6)",
+    #     ]
+    #     * 10,
+    #     [
+    #         "rgba(20,20,120,0.6)",
+    #     ]
+    #     * 10,
+    #     [
+    #         "rgba(20,20,120,0.6)",
+    #     ]
+    #     * 10,
+    #     [
+    #         "rgba(20,20,120,0.6)",
+    #     ]
+    #     * 10,
+    # ]
+
+    return colors
+
+
+def get_inflation_adjusted(data):
+    index = get_index_starting(2018)
+
+    result = index * data.iloc[0]
+
+    return result

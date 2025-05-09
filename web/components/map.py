@@ -4,25 +4,27 @@ import pandas as pd
 import plotly.express as px
 
 
-def create_map(uni_data, year):
-    with open("../data/test.json") as f:
+def create_map(uni_data, year, benefit):
+    with open("../data/municipalities.json") as f:
         municipalities = json.load(f)
 
     filtered_aid24 = uni_data.loc[
         (uni_data["aikatyyppi"] == "Vuosi")
         & (uni_data["vuosi"] == year)
-        & (uni_data["etuus"] == "Yhteensä")
+        & (uni_data["etuus"].isin(benefit))
     ]
 
-    filtered_aid24.head(10)
-
     receivers_by_municipality = filtered_aid24.groupby("kunta_nro").sum(
-        "saaja_lkm",
+        numeric_only=True
     )
+
+    print(receivers_by_municipality.head(10))
+
     receivers_by_municipality = pd.DataFrame(
         {
             "kunta_nro": receivers_by_municipality.index,
-            "count": receivers_by_municipality["saaja_lkm"],
+            "average": receivers_by_municipality["maksettu_laskenta_eur"]
+            / receivers_by_municipality["saaja_lkm"],
         }
     )
 
@@ -30,7 +32,7 @@ def create_map(uni_data, year):
         receivers_by_municipality,
         geojson=municipalities,
         locations="kunta_nro",
-        color="count",
+        color="average",
         color_continuous_scale="Greens",
         zoom=3,
         center={"lat": 63.116000, "lon": 24.359000},

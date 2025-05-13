@@ -1,4 +1,5 @@
 import plotly.graph_objects as go
+
 from components.helpers import get_colors
 
 
@@ -18,7 +19,7 @@ def create_bargraph(uni_data, year=2018, benefit=["opintoraha"]):
                 x=group["vuosi"],
                 y=group["average"],
                 name=name,
-                marker_color=colors[id],
+                marker_color=colors[name],
             )
         )
 

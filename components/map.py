@@ -18,8 +18,6 @@ def create_map(uni_data, year, benefit):
         numeric_only=True
     )
 
-    print(receivers_by_municipality.head(10))
-
     receivers_by_municipality = pd.DataFrame(
         {
             "kunta_nro": receivers_by_municipality.index,

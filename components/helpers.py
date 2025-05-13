@@ -36,30 +36,13 @@ def get_colors(year):
 
         colors.append(color)
 
-    # colors = [
-    #     [
-    #         "rgba(20,120,20,0.6)",
-    #     ]
-    #     * 10,
-    #     [
-    #         "rgba(20,20,120,0.6)",
-    #     ]
-    #     * 10,
-    #     [
-    #         "rgba(20,20,120,0.6)",
-    #     ]
-    #     * 10,
-    #     [
-    #         "rgba(20,20,120,0.6)",
-    #     ]
-    #     * 10,
-    #     [
-    #         "rgba(20,20,120,0.6)",
-    #     ]
-    #     * 10,
-    # ]
+    result = {
+        "Opintolainan valtiontakaus": colors[0],
+        "Asumislisä": colors[1],
+        "Opintoraha": colors[2],
+    }
 
-    return colors
+    return result
 
 
 def get_inflation_adjusted(data):

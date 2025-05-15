@@ -51,3 +51,14 @@ def get_inflation_adjusted(data):
     result = index * data.iloc[0]
 
     return result
+
+
+def get_translation(original):
+    d = {
+        "etuus": "benefit",
+        "Opintolainan valtiontakaus": "Student loan",
+        "Asumislisä": "Housing supplement",
+        "Opintoraha": "Study grant",
+    }
+
+    return d[original]

@@ -3,7 +3,7 @@ import plotly.graph_objects as go
 from components.helpers import get_colors, get_translation
 
 
-def create_bargraph(uni_data, year=2018, benefit=["opintoraha"]):
+def create_difference_graph(uni_data, year=2018, benefit=["opintoraha"]):
 
     uni_data = uni_data.loc[uni_data["etuus"].isin(benefit)]
 

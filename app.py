@@ -4,6 +4,7 @@ from dash import Dash, Input, Output, dcc, html
 
 from components.bargraph import create_bargraph
 from components.big_numbers import create_big_numbers
+from components.helpers import get_translation
 from components.map import create_map
 from components.timeline import create_timeline
 
@@ -22,6 +23,9 @@ uni_data = uni_data.loc[
 
 timeline = create_timeline()
 
+benefits = {}
+for i in uni_data["etuus"].unique():
+    benefits[i] = get_translation(i)
 
 app.layout = dbc.Container(
     [
@@ -42,12 +46,13 @@ app.layout = dbc.Container(
                 dbc.Col(
                     [
                         dcc.Dropdown(
-                            uni_data["etuus"].unique(),
+                            benefits,
                             ["Opintoraha"],
                             id="dropdown_selector",
                             multi=True,
                         ),
                         dcc.Graph(id="bargraph"),
+                        # dcc.Graph(id="difference_graph")
                         html.Div(id="big_numbers"),
                     ],
                     width=5,

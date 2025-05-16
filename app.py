@@ -23,7 +23,10 @@ uni_data = uni_data.loc[
 ]
 
 description = """
-This is the description of the visualisation.
+Data visualisation about average financial aid
+received by university students and its relation to inflation. 
+Information about the changes financial aid system has received 
+over the years can be found below on the timeline.
 """
 
 benefits = {}
@@ -34,14 +37,14 @@ timeline = create_timeline()
 
 app.layout = dbc.Container(
     [
-        html.H1("Financial aid for Finnish university students 2018-2024"),
+        html.H2("Financial aid for Finnish university students 2018-2024"),
         html.Hr(),
         dbc.Row(
             [
                 dbc.Col(
                     [
                         html.P(description),
-                        html.H2("Timeline"),
+                        html.H3("Timeline"),
                         html.Div(
                             "Timeline of changes for Finnish financial aid for students"
                         ),
@@ -58,7 +61,7 @@ app.layout = dbc.Container(
                 ),
                 dbc.Col(
                     [
-                        html.H2("Choose benefit(s)"),
+                        html.H3("Choose benefit(s)"),
                         dcc.Dropdown(
                             benefits,
                             ["Opintoraha"],
@@ -66,7 +69,7 @@ app.layout = dbc.Container(
                             multi=True,
                         ),
                         html.Div(style={"height": "2em"}),
-                        html.H3("Difference between average and index fixed value."),
+                        html.H4("Difference between average and index fixed value."),
                         html.Div(id="big_numbers"),
                     ]
                 ),

@@ -4,6 +4,7 @@ from dash import Dash, Input, Output, dcc, html
 
 from components.bargraph import create_bargraph
 from components.big_numbers import create_big_numbers
+from components.difference_graph import create_difference_graph
 from components.helpers import get_translation
 from components.map import create_map
 from components.timeline import create_timeline
@@ -45,21 +46,27 @@ app.layout = dbc.Container(
                 ),
                 dbc.Col(
                     [
+                        dcc.Graph(id="bargraph"),
+                        dcc.Graph(id="difference_graph"),
+                    ],
+                    width=6,
+                ),
+                dbc.Col(
+                    [
                         dcc.Dropdown(
                             benefits,
                             ["Opintoraha"],
                             id="dropdown_selector",
                             multi=True,
                         ),
-                        dcc.Graph(id="bargraph"),
-                        # dcc.Graph(id="difference_graph")
+                        html.P(),
+                        html.Div("Difference between average and index fixed value"),
                         html.Div(id="big_numbers"),
-                    ],
-                    width=5,
+                    ]
                 ),
-                dbc.Col(dcc.Graph(id="choropleth_map"), width=4),
+                # dbc.Col(dcc.Graph(id="choropleth_map"), width=4),
             ],
-            align="center",
+            align="start",
         ),
     ],
     fluid=True,
@@ -74,16 +81,29 @@ server = app.server
     [Input("dropdown_selector", "value")],
 )
 def update_graph(year, benefit):
+    if not isinstance(year, int):
+        return
     return create_bargraph(uni_data, year=year, benefit=benefit)
 
 
 @app.callback(
-    Output("choropleth_map", "figure"),
+    Output("difference_graph", "figure"),
     [Input("timeline", "active_item")],
     [Input("dropdown_selector", "value")],
 )
-def update_map(year, benefit):
-    return create_map(uni_data_full, year=year, benefit=benefit)
+def update_graph(year, benefit):
+    if not isinstance(year, int):
+        return
+    return create_difference_graph(uni_data, year=year, benefit=benefit)
+
+
+# @app.callback(
+#     Output("choropleth_map", "figure"),
+#     [Input("timeline", "active_item")],
+#     [Input("dropdown_selector", "value")],
+# )
+# def update_map(year, benefit):
+#     return create_map(uni_data_full, year=year, benefit=benefit)
 
 
 @app.callback(
@@ -92,6 +112,8 @@ def update_map(year, benefit):
     [Input("dropdown_selector", "value")],
 )
 def update_big_numbers(year, benefit):
+    if not isinstance(year, int):
+        return
     return create_big_numbers(uni_data, year=year, benefit=benefit)
 
 

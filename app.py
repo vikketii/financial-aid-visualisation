@@ -16,12 +16,15 @@ app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 uni_data = pd.read_csv("data/evaluated_data_2018_2024.csv")
 uni_data_full = pd.read_csv("data/uni_data_2018_2024_years.csv")
 
-
 uni_data = uni_data.loc[
     (uni_data["etuus"] == "Opintoraha")
     | (uni_data["etuus"] == "Opintolainan valtiontakaus")
     | (uni_data["etuus"] == "Asumislisä")
 ]
+
+description = """
+This is the description of the visualisation.
+"""
 
 benefits = {}
 for i in uni_data["etuus"].unique():
@@ -37,6 +40,7 @@ app.layout = dbc.Container(
             [
                 dbc.Col(
                     [
+                        html.P(description),
                         html.H2("Timeline"),
                         html.Div(
                             "Timeline of changes for Finnish financial aid for students"
@@ -76,12 +80,29 @@ app.layout = dbc.Container(
 server = app.server
 
 
-@app.callback(Output("timeline", "children"), Input("bargraph", "clickData"))
+@app.callback(
+    Output("timeline", "children", allow_duplicate=True),
+    Input("bargraph", "clickData"),
+    prevent_initial_call=True,
+)
 def select_year_from_graph(clickData):
     if not clickData:
         return create_timeline()
 
     return create_timeline(clickData["points"][0]["x"])
+
+
+@app.callback(
+    Output("timeline", "children"),
+    Input("difference_graph", "clickData"),
+    prevent_initial_call=True,
+)
+def select_year_from_graph(clickData):
+    if not clickData:
+        return create_timeline()
+
+    if clickData:
+        return create_timeline(clickData["points"][0]["x"])
 
 
 @app.callback(

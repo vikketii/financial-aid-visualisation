@@ -21,7 +21,9 @@ def create_big_numbers(uni_data, year, benefit):
 
     return dbc.Row(
         [
-            html.Div(f"(baseline 2018, chosen year {year})"),
-            html.Div([html.Div(diff) for diff in difference]),
+            html.Div(f"Baseline 2018, chosen year {year}.", style={"height": "2em"}),
+            html.Div(
+                [html.Div(diff) for diff in difference], style={"fontSize": "1.2em"}
+            ),
         ]
     )

@@ -58,14 +58,15 @@ app.layout = dbc.Container(
                 ),
                 dbc.Col(
                     [
+                        html.H2("Choose benefit(s)"),
                         dcc.Dropdown(
                             benefits,
                             ["Opintoraha"],
                             id="dropdown_selector",
                             multi=True,
                         ),
-                        html.P(),
-                        html.Div("Difference between average and index fixed value"),
+                        html.Div(style={"height": "2em"}),
+                        html.H3("Difference between average and index fixed value."),
                         html.Div(id="big_numbers"),
                     ]
                 ),

@@ -17,6 +17,7 @@ def create_difference_graph(uni_data, year=2018, benefit=["opintoraha"]):
                 y=group["change"],
                 name=get_translation(name),
                 marker_color=colors[name],
+                showlegend=True,
             )
         )
 

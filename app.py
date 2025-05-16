@@ -1,3 +1,5 @@
+import json
+
 import dash_bootstrap_components as dbc
 import pandas as pd
 from dash import Dash, Input, Output, dcc, html
@@ -21,12 +23,11 @@ uni_data = uni_data.loc[
     | (uni_data["etuus"] == "Asumislisä")
 ]
 
-
-timeline = create_timeline()
-
 benefits = {}
 for i in uni_data["etuus"].unique():
     benefits[i] = get_translation(i)
+
+timeline = create_timeline()
 
 app.layout = dbc.Container(
     [
@@ -75,12 +76,20 @@ app.layout = dbc.Container(
 server = app.server
 
 
+@app.callback(Output("timeline", "children"), Input("bargraph", "clickData"))
+def select_year_from_graph(clickData):
+    if not clickData:
+        return create_timeline()
+
+    return create_timeline(clickData["points"][0]["x"])
+
+
 @app.callback(
     Output("bargraph", "figure"),
     [Input("timeline", "active_item")],
     [Input("dropdown_selector", "value")],
 )
-def update_graph(year, benefit):
+def update_bargraph(year, benefit):
     if not isinstance(year, int):
         return
     return create_bargraph(uni_data, year=year, benefit=benefit)
@@ -91,7 +100,7 @@ def update_graph(year, benefit):
     [Input("timeline", "active_item")],
     [Input("dropdown_selector", "value")],
 )
-def update_graph(year, benefit):
+def update_differencegraph(year, benefit):
     if not isinstance(year, int):
         return
     return create_difference_graph(uni_data, year=year, benefit=benefit)

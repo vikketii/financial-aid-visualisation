@@ -49,7 +49,7 @@ timeline_data = [
 ]
 
 
-def create_timeline():
+def create_timeline(active=2018):
     timeline = html.Div(
         [
             dbc.Accordion(
@@ -60,9 +60,9 @@ def create_timeline():
                     for item in timeline_data
                 ],
                 id="timeline",
-                active_item=timeline_data[0]["year"],
+                active_item=active,
             ),
-            html.Div(id="timeline-contents", className="mt-3"),
+            # html.Div(id="timeline-contents", className="mt-3"),
         ]
     )
 

@@ -42,7 +42,7 @@ def create_bargraph(uni_data, year=2018, benefit=["opintoraha"]):
 
     bargraph.update_layout(
         # legend_title_text="Benefit",
-        title_text="Financial aid received (monthly average by year)",
+        title_text="Financial aid received (yearly average)",
         yaxis_title_text="Average €",
         # legend=dict(yanchor="top", y=0.99, xanchor="left", x=0.01),
     )

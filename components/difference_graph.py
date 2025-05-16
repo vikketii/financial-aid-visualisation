@@ -22,7 +22,7 @@ def create_difference_graph(uni_data, year=2018, benefit=["opintoraha"]):
 
     bargraph.update_layout(
         legend_title_text="Benefit",
-        title_text="Yearly change in average financial aid",
+        title_text="Change in average financial aid",
         yaxis_title_text="Change %",
     )
 
